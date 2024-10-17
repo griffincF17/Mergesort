@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class Mergesort
 {
-    private static void Merge(int[] a, int start, int mid, int end){
+    private static void merge(int[] a, int start, int mid, int end){
 	//Index variables
 	int i;
 	int j;
@@ -59,15 +59,25 @@ public class Mergesort
 	}
     }
 
-    public static void MSort(int[] a, int start, int end){
+    public static void mSort(int[] a, int start, int end){
 	if(start < end){
 	    int mid = start + (end - start) / 2;
-	    MSort(a, start, mid);
-	    MSort(a, mid+1, end);
-	    Merge(a, start, mid, end);
+	    mSort(a, start, mid);
+	    mSort(a, mid+1, end);
+	    merge(a, start, mid, end);
 	}
     }
 
+    public static void printArray(int[] a){
+	StringBuilder sb = new StringBuilder();
+
+	for(int num: a){
+	    sb.append(num);
+	    sb.append(" ");
+	}
+
+	System.out.println(sb.toString());
+    }
 
     public static void main(String[] args){
 	Random r = new Random();
@@ -82,18 +92,15 @@ public class Mergesort
 	//Prints the array before sorting
 	System.out.print("Array before mergesort: ");
 
-	for(int n: arr){
-	    System.out.print(n + " ");
-	}
+	printArray(arr);
 
-	MSort(arr, 0, arr.length-1);
+	mSort(arr, 0, arr.length-1);
 
 	//Prints the array after sorting
 	System.out.print("\nArray after mergesort: ");
 
-	for(int n: arr){
-	    System.out.print(n + " ");
-	}
+	printArray(arr);
+
 	System.out.println();
     }
 }
